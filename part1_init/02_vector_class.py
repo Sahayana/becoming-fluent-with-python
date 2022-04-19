@@ -8,6 +8,8 @@ class Vector:
         self.y = y
 
     # 객체를 문자열로 표현
+    # 객체를 문자열 형태로 표현하는 방법은 __repr__과 __str__이 있는데 전자는 디버깅 및 로그에 쓰이고 후자는 사용자에게 보여주기 위한 형태이다.
+    # 하나만 구현해야 한다면 __repr__을 구현하는 것이 좋다. __str__은 print함수에 의해 암묵적으로 사용되며 __repr__이 보다 근본적인 형태이다.
     def __repr__(self) -> str:
         return 'Vector(%r, %r)' % (self.x, self.y)  # %r은 __repr__에서 설정한 값
     
@@ -46,3 +48,10 @@ v3 = Vector('3', '4')
 print(v3)
 # print(v1 + v3)
 # print(abs(v3))
+
+
+'''
+요약:
+
+특별 메서드 (special method, magic method)를 구현하면 ㅅ하용자 정의 객체도 내장형 객체처럼 작동하여 보다 파이썬다운 코딩 스타일을 구현할 수 있다.
+'''
