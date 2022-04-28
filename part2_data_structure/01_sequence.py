@@ -19,6 +19,9 @@
  함수처럼 고유한 지역 범위를 가진다. 즉, 표현식 안에서 할당된 변수는 지역 변수
 '''
 
+from math import remainder
+
+
 fruits = 'pineapple apple peach pear banana'
 fruits_list = [fruit.upper() for fruit in fruits.split() if len(fruit) > 5]
 print(fruits_list)
@@ -54,3 +57,33 @@ print(f'fruits_generator_tuple: {tuple(fruits_generator)}')
 products_generator = (f'{color} {size}' for color in colors for size in sizes)
 for product in products_generator:
     print('product: {}'.format(product))
+
+
+## 3. 튜플은 단순한 불변 리스트가 아니다.
+
+'''
+3-1 레코드로 서의 튜플
+ 튜플의 각 항목은 레코드의 필드 하나를 의미하며 항목의 위치가 의미를 결정
+'''
+
+fruit, price = ('lemon', 5000)
+print(fruit, price)
+
+fruit_price_list = [(fruit, 5000) for fruit in fruits.split()]
+
+for item in sorted(fruit_price_list):
+    print('%s/%i' % item)
+
+'''
+3-2 튜플 언패킹
+'''
+
+for fruit, price in fruit_price_list:   # fruit, price를 병렬할당으로 언패킹
+    print(fruit)
+
+t = (20, 8)
+quotient, remain = divmod(*t)   # *t 형식으로 언패킹
+print(quotient, remain)
+
+a,b,*rest = fruits.split()
+print(a,b,rest)
