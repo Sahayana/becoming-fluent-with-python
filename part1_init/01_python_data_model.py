@@ -47,4 +47,4 @@ for card in sorted(deck, key=sorted_cards):
 
 
 # 특별 메서드의 호출 방법 ex) __len__
-# 객체 card의 __len__ 특별 메서드는 len(card)로 호출하며 이는 곳 card.__len__ 메서드를 호출하는 구조 
+# 객체 card의 __len__ 특별 메서드는 len(card)로 호출하며 이는 곧 card.__len__ 메서드를 호출하는 구조 
