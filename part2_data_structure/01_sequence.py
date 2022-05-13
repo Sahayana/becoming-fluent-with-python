@@ -208,7 +208,7 @@ fp = open('floats.bin', 'rb')
 floats2.fromfile(fp, 10**7)     # fromfile(f, n): 패킹된 기계값으로 해석한 이진 파일 f에서 n개의 항목을 가져와 추가
 fp.close()
 
-print('floats==floats: ', floats==floats2) # True
+print('floats==floats2: ', floats==floats2) # True
 
 
 '''

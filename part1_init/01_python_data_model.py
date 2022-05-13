@@ -17,6 +17,9 @@ class FrenchDeck:
 
     def __init__(self) -> None:
         self._cards = [Card(rank=rank, suit=suit) for suit in self.suits for rank in self.ranks]
+    
+    def __repr__(self) -> str:
+        return 'FrenchDeck'
 
     def __len__(self):
         return len(self._cards)
@@ -26,6 +29,8 @@ class FrenchDeck:
 
 
 deck = FrenchDeck()
+
+print('deck:', deck)
 
 # print(deck._cards)  # __init__
 # print(len(deck))    # __len__
