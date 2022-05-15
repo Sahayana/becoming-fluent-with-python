@@ -44,12 +44,13 @@ print('fruits_dict:',fruits_dict)
 '''
 
 my_dict = {'a':list()} # Not using defaultdict
-iterwords = 'abcdefg'
-try:
-    for word in iterwords:
+iterwords = 'abcd'
+
+for word in iterwords:
+    try:
         my_dict[word].append(word)
-except KeyError:
-    pass
+    except KeyError:
+        my_dict.update({word:list(word)})
 
 print(my_dict)
 
