@@ -104,3 +104,39 @@ for word in iterwords:
     my_dict[word].append(word)
 print('UserDict 상속한 ListKeyDict:', my_dict)
 print('a in my_dict:', 'a' in my_dict)
+
+
+## 3. 집합 (set & frozenset)
+
+'''
+3-1 set 
+    '고유한' 객체의 모음, 기본적으로 중복 항복을 제거한다.
+    중위연산자 (|, &, -)를 통해 기본적인 집합 연산 가능
+    A set object is an unordered collection of distinct 'hashable' objects.
+'''
+
+fruits = ['apple','banana','banana','grape','grape','orange','orange','kiwi']
+fruits = set(fruits)
+print(fruits)   # {'grape', 'kiwi', 'apple', 'banana', 'orange'}
+
+fruits2 = {'kiwi', 'apple', 'banana', 'orange', 'pear'} # {} 구문으로 set 생성가능 (단, 인자가 없으면 딕셔너리로 인식하기 때문에 주의)
+print(fruits2)
+
+# 교집합
+print('fruits & fruits2:',fruits & fruits2)
+
+# 합집합
+print('fruits | fruits2:',fruits | fruits2)
+
+# 차집합
+print('fruits - fruits2:',fruits - fruits2)
+
+'''
+3-2 frozenset 
+    immutable한 set
+    요소의 추가/변경이 불가능
+'''
+
+fruits = frozenset(fruits)
+print(type(fruits))
+
