@@ -62,8 +62,26 @@ print("list_for_map==list_comp:", list_for_map==list_comp)  # True
 from functools import reduce
 from operator import add
 
+
 val_reduce = reduce(add, range(100))
 val_sum = sum(range(100))
 print("val_reduce:", val_reduce)
 print("val_sum:", val_sum)
 print("val_reduce==val_sum:", val_reduce==val_sum)  # True
+
+# all과 any
+
+password = '123456789@'
+condition = lambda x : x in '!@#%$^'
+validation = [condition(word) for word in password] 
+print('all(validation):', all(validation))  # False
+print('any(validation):', any(validation))  # True
+
+'''
+2-2 익명 함수 lambda
+ 람다 구문은 단지 편리 구문(sugar syntax)이다.
+ def와 마찬가지로 람다 표현식도 하나의 함수 객체를 생성하며, 여러 콜러블 객체중 하나이다.
+ while, try 등의 파이썬 구문을 람다 본체에서 생성할 수 없다.
+'''
+
+print("sorted(fruits, key=lambda x : x[::-1]): ",sorted(fruits, key=lambda x : x[::-1]))    # ['orange', 'apple', 'pineapple', 'kiwi', 'watermelon', 'strawberry']
