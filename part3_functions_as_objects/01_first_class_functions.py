@@ -25,3 +25,45 @@ fact = factorial    # 함수를 변수에 할당
 
 fact_list = [fact(i) for i in range(0, 11)]
 print("fact_list:", fact_list)
+
+
+## 2. 고위 함수 (Higher-order fucntion)
+
+'''
+2-1 고위 함수
+ 함수를 인수로 받거나, 함수를 결과로 반환하는 함수
+ map(), filter(), reduce() 등이 대표적
+'''
+
+fruits = ['apple', 'kiwi', 'orange', 'pineapple', 'strawberry', 'watermelon']
+
+def reverse_key(word):  # sorted()의 key에 활용되는 함수는 인자를 하나만 받는다.
+    return word[::-1]
+
+print("sorted(fruits, key=reverse_key): ",sorted(fruits, key=reverse_key))  # ['orange', 'apple', 'pineapple', 'kiwi', 'watermelon', 'strawberry']
+print("sorted(fruits, key=len): ",sorted(fruits, key=len))  # ['kiwi', 'apple', 'orange', 'pineapple', 'strawberry', 'watermelon']
+
+
+'''
+2-2 map(), filter(), reduce()의 대안
+ 함수를 인수로 받거나, 함수를 결과로 반환하는 함수
+ map(), filter(), reduce() 등이 대표적
+'''
+
+# map과 filter의 대안 == 지능형 리스트
+fact = factorial
+list_for_map = list(map(fact, filter(lambda i : i % 2, range(1, 11))))
+list_comp = [fact(i) for i in range(1,11) if i % 2]
+print("list_for_map: ",list_for_map)
+print("list_comp: ",list_comp)
+print("list_for_map==list_comp:", list_for_map==list_comp)  # True
+
+# reduce의 대안 == sum
+from functools import reduce
+from operator import add
+
+val_reduce = reduce(add, range(100))
+val_sum = sum(range(100))
+print("val_reduce:", val_reduce)
+print("val_sum:", val_sum)
+print("val_reduce==val_sum:", val_reduce==val_sum)  # True
