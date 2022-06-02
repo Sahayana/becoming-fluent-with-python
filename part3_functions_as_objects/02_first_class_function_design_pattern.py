@@ -161,3 +161,52 @@ print('bluk_order:',bluk_order)
 large_cart = [Lineitem(str(i), 1, 1000) for i in range(1, 21)]
 large_order = NewOrder(yang, cart=large_cart, promotion=large_promo)
 print('large_order:',large_order)
+
+
+'''
+1-3 최선의 전략 선택: 단순 접근
+ 가독성이 좋지만 새로운 할인 전략을 추가하면 하드 코딩으로 수정해야 해서 버그 발생 여지가 높다.
+'''
+
+new_order = [
+    NewOrder(geum, cart=cart, promotion=fidelity_promo).due(),    # 가장 할인률 높음
+    NewOrder(geum, cart=cart, promotion=bulk_promo).due(),
+    NewOrder(geum, cart=cart, promotion=large_promo).due(),
+]
+
+
+
+promos = [fidelity_promo, bulk_promo, large_promo]
+
+def best_promo(order):
+    '''최대로 할인받을 금액을 반환'''
+    discounts = [promo(order) for promo in promos]
+    return max(discounts)
+
+best_order = NewOrder(geum, cart=cart, promotion=best_promo)
+
+print(min(new_order)==best_order.due()) # True
+
+'''
+1-4 최선의 전략 선택: 모듈에서 전략 찾기(1)
+ globals() 함수로 자동으로 *_promo() 함수를 찾아내게 하기
+ globals(): 함수가 '정의된' 현재 모듈의 전역 심벌 테이블을 나타내는 딕셔너리 객체 반환
+'''
+
+promos = [globals()[name] for name in globals() if name.endswith('_promo') and name != 'best_promo']
+best_order = NewOrder(geum, cart=cart, promotion=best_promo)
+
+print(min(new_order)==best_order.due()) # True
+
+'''
+1-5 최선의 전략 선택: 모듈에서 전략 찾기(2)
+ promo 함수들이 정의된 별도 모듈에 내부 조사를 수행해서 만든 전략 함수 리스트 사용
+'''
+
+import promotions
+import inspect
+
+promos = [func for name, func in inspect.getmembers(promotions, inspect.isfunction)]
+best_order = NewOrder(geum, cart=cart, promotion=best_promo)
+
+print(min(new_order)==best_order.due()) # True
